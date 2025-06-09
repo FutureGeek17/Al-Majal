@@ -1,0 +1,117 @@
+{% extends "base.html" %}
+
+{% block title %}Community Events - Al Majal Business Camp{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<main class="main-content">
+    <!-- Hero Section -->
+    <section class="page-header">
+        <div class="header-content">
+            <h1><i class="fas fa-calendar-alt"></i> Community Events</h1>
+            <p class="subtitle">Join Us for Exciting Activities and Gatherings</p>
+        </div>
+    </section>
+
+    <!-- Upcoming Events Section -->
+    <section class="events-section">
+        <div class="container">
+            <h2><i class="fas fa-star"></i> Upcoming Events</h2>
+            <div class="events-grid">
+                <div class="event-card">
+                    <div class="event-date">
+                        <i class="fas fa-calendar"></i>
+                        <span>June 15, 2024</span>
+                    </div>
+                    <h3>Summer Sports Tournament</h3>
+                    <p>Join our annual summer sports tournament featuring padel tennis, basketball, and table tennis competitions.</p>
+                    <div class="event-details">
+                        <span><i class="fas fa-clock"></i> 9:00 AM - 6:00 PM</span>
+                        <span><i class="fas fa-map-marker-alt"></i> Sports Complex</span>
+                    </div>
+                </div>
+
+                <div class="event-card">
+                    <div class="event-date">
+                        <i class="fas fa-calendar"></i>
+                        <span>June 20, 2024</span>
+                    </div>
+                    <h3>Community BBQ Night</h3>
+                    <p>An evening of delicious food, music, and socializing with fellow camp residents and guests.</p>
+                    <div class="event-details">
+                        <span><i class="fas fa-clock"></i> 6:00 PM - 10:00 PM</span>
+                        <span><i class="fas fa-map-marker-alt"></i> Central Garden</span>
+                    </div>
+                </div>
+
+                <div class="event-card">
+                    <div class="event-date">
+                        <i class="fas fa-calendar"></i>
+                        <span>June 25, 2024</span>
+                    </div>
+                    <h3>Mini Golf Championship</h3>
+                    <p>Test your skills in our mini golf championship. Prizes for different age categories!</p>
+                    <div class="event-details">
+                        <span><i class="fas fa-clock"></i> 4:00 PM - 8:00 PM</span>
+                        <span><i class="fas fa-map-marker-alt"></i> Mini Golf Course</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Regular Activities Section -->
+    <section class="regular-activities">
+        <div class="container">
+            <h2><i class="fas fa-clock"></i> Regular Weekly Activities</h2>
+            <div class="activities-grid">
+                <div class="activity-card">
+                    <i class="fas fa-running"></i>
+                    <h3>Morning Fitness</h3>
+                    <p>Start your day with group fitness sessions</p>
+                    <span class="schedule">Mon, Wed, Fri | 7:00 AM</span>
+                </div>
+
+                <div class="activity-card">
+                    <i class="fas fa-table-tennis"></i>
+                    <h3>Table Tennis Club</h3>
+                    <p>Weekly matches and training sessions</p>
+                    <span class="schedule">Tuesdays | 5:00 PM</span>
+                </div>
+
+                <div class="activity-card">
+                    <i class="fas fa-basketball-ball"></i>
+                    <h3>Basketball League</h3>
+                    <p>Recreational basketball games</p>
+                    <span class="schedule">Thursdays | 6:00 PM</span>
+                </div>
+
+                <div class="activity-card">
+                    <i class="fas fa-futbol"></i>
+                    <h3>Football Matches</h3>
+                    <p>5-a-side football tournaments</p>
+                    <span class="schedule">Saturdays | 4:00 PM</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Join Events Section -->
+    <section class="join-events">
+        <div class="container">
+            <div class="join-content">
+                <h2><i class="fas fa-users"></i> Get Involved!</h2>
+                <p>Want to participate in our community events or suggest a new activity?</p>
+                <div class="cta-buttons">
+                    <a href="{{ url_for('activities') }}" class="cta-btn primary">View All Activities</a>
+                    <a href="#" class="cta-btn secondary">Suggest an Event</a>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+{% endblock %} 

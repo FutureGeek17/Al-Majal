@@ -1,0 +1,23 @@
+DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS bookings;
+
+CREATE TABLE users (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL,
+    phone TEXT UNIQUE NOT NULL,
+    password TEXT NOT NULL,
+    id_number TEXT UNIQUE NOT NULL,
+    is_admin BOOLEAN NOT NULL DEFAULT 0,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE bookings (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER NOT NULL,
+    facility TEXT NOT NULL,
+    date DATE NOT NULL,
+    time_slot INTEGER NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users (id),
+    UNIQUE(facility, date, time_slot)
+); 

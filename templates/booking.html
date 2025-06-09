@@ -1,0 +1,215 @@
+{% extends "base.html" %}
+
+{% block title %}Book Activity - Al Majal Camp{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/booking.css') }}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    {% if not request.args.get('activity_id') %}
+    <div class="activity-selection">
+        <div class="section-header">
+            <h1>Book an Activity</h1>
+            <p class="subtitle">Select from our premium sports facilities</p>
+        </div>
+        
+        <div class="activities-grid">
+            <div class="activity-category">
+                <h2><i class="fas fa-basketball-ball"></i> Court Sports</h2>
+                <div class="category-grid">
+                    <div class="activity-card">
+                        <div class="activity-image">
+                            <img src="{{ url_for('static', filename='images/activities/padel-courts.jpg') }}" alt="Padel Courts">
+                        </div>
+                        <div class="activity-info">
+                            <h3>Padel Courts</h3>
+                            <div class="activity-details">
+                                <span><i class="fas fa-users"></i> 2-4 Players</span>
+                                <span><i class="fas fa-clock"></i> 60 min</span>
+                            </div>
+                            {% if current_user.is_authenticated %}
+                            <a href="{{ url_for('booking', activity_id=1) }}" class="book-btn">
+                                <i class="fas fa-calendar-plus"></i> Book Now
+                            </a>
+                            {% else %}
+                            <a href="{{ url_for('login') }}" class="book-btn">
+                                <i class="fas fa-sign-in-alt"></i> Login to Book
+                            </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                    
+                    <div class="activity-card">
+                        <div class="activity-image">
+                            <img src="{{ url_for('static', filename='images/activities/basketball-court.jpg') }}" alt="Basketball/Volleyball Court">
+                        </div>
+                        <div class="activity-info">
+                            <h3>Basketball Court</h3>
+                            <div class="activity-details">
+                                <span><i class="fas fa-users"></i> 2-10 Players</span>
+                                <span><i class="fas fa-clock"></i> 60 min</span>
+                            </div>
+                            {% if current_user.is_authenticated %}
+                            <a href="{{ url_for('booking', activity_id=2) }}" class="book-btn">
+                                <i class="fas fa-calendar-plus"></i> Book Now
+                            </a>
+                            {% else %}
+                            <a href="{{ url_for('login') }}" class="book-btn">
+                                <i class="fas fa-sign-in-alt"></i> Login to Book
+                            </a>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <div class="activity-card">
+                        <div class="activity-image">
+                            <img src="{{ url_for('static', filename='images/activities/football.jpg') }}" alt="Football Field">
+                        </div>
+                        <div class="activity-info">
+                            <h3>Football Field</h3>
+                            <div class="activity-details">
+                                <span><i class="fas fa-users"></i> 6-14 Players</span>
+                                <span><i class="fas fa-clock"></i> 60 min</span>
+                            </div>
+                            {% if current_user.is_authenticated %}
+                            <a href="{{ url_for('booking', activity_id=5) }}" class="book-btn">
+                                <i class="fas fa-calendar-plus"></i> Book Now
+                            </a>
+                            {% else %}
+                            <a href="{{ url_for('login') }}" class="book-btn">
+                                <i class="fas fa-sign-in-alt"></i> Login to Book
+                            </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="activity-category">
+                <h2><i class="fas fa-table-tennis"></i> Indoor Activities</h2>
+                <div class="category-grid">
+                    <div class="activity-card">
+                        <div class="activity-image">
+                            <img src="{{ url_for('static', filename='images/activities/indoor-table-tennis.jpg') }}" alt="Table Tennis" onerror="this.parentElement.classList.add('no-image'); this.style.display='none';">
+                        </div>
+                        <div class="activity-info">
+                            <h3>Table Tennis</h3>
+                            <div class="activity-details">
+                                <span><i class="fas fa-users"></i> 2-4 Players</span>
+                                <span><i class="fas fa-clock"></i> 30 min</span>
+                            </div>
+                            <p>Professional indoor table tennis facility with high-quality equipment.</p>
+                            {% if current_user.is_authenticated %}
+                            <a href="{{ url_for('booking', activity_id=3) }}" class="book-btn">
+                                <i class="fas fa-calendar-check"></i> Book Now
+                            </a>
+                            {% else %}
+                            <a href="{{ url_for('login') }}" class="book-btn">
+                                <i class="fas fa-sign-in-alt"></i> Login to Book
+                            </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                    
+                    <div class="activity-card">
+                        <div class="activity-image">
+                            <img src="{{ url_for('static', filename='images/activities/mini-golf.jpg') }}" alt="Mini Golf">
+                        </div>
+                        <div class="activity-info">
+                            <h3>Mini Golf</h3>
+                            <div class="activity-details">
+                                <span><i class="fas fa-users"></i> 1-4 Players</span>
+                                <span><i class="fas fa-clock"></i> 45 min</span>
+                            </div>
+                            {% if current_user.is_authenticated %}
+                            <a href="{{ url_for('booking', activity_id=4) }}" class="book-btn">
+                                <i class="fas fa-calendar-plus"></i> Book Now
+                            </a>
+                            {% else %}
+                            <a href="{{ url_for('login') }}" class="book-btn">
+                                <i class="fas fa-sign-in-alt"></i> Login to Book
+                            </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% else %}
+    <div class="booking-section {% if not request.args.get('activity_id') %}hidden{% endif %}">
+        <div class="booking-container">
+            <h2 id="modalTitle">Book Activity</h2>
+            
+            <form id="bookingForm" class="booking-form">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                <input type="hidden" id="activityId" name="activity_id" value="{{ request.args.get('activity_id') }}">
+                
+                <div class="form-group">
+                    <label for="bookingDate"><i class="fas fa-calendar"></i> Select Date</label>
+                    <div class="calendar-container">
+                        <input type="text" id="bookingDate" name="date" class="form-control" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label><i class="fas fa-clock"></i> Available Time Slots</label>
+                    <div id="timeSlots" class="time-slots">
+                        <!-- Time slots will be populated here -->
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="participants"><i class="fas fa-users"></i> Number of Participants</label>
+                    <div class="participant-controls">
+                        <button type="button" onclick="decrementParticipants()"><i class="fas fa-minus"></i></button>
+                        <input type="number" id="participants" name="participants" value="1" min="1" max="10" required>
+                        <button type="button" onclick="incrementParticipants()"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="notes"><i class="fas fa-comment-alt"></i> Additional Notes</label>
+                    <textarea id="notes" name="notes" rows="3" class="form-control" placeholder="Any special requirements or requests?"></textarea>
+                </div>
+
+                <button type="submit" class="book-btn">
+                    <i class="fas fa-check-circle"></i> Confirm Booking
+                </button>
+            </form>
+        </div>
+    </div>
+    {% endif %}
+</div>
+
+<!-- Success Modal -->
+<div id="successModal" class="modal">
+    <div class="modal-content">
+        <div class="success-animation">
+            <i class="fas fa-check-circle"></i>
+        </div>
+        <h2>Booking Confirmed!</h2>
+        <p>Your booking has been successfully created.</p>
+        <p>Redirecting to your profile...</p>
+    </div>
+</div>
+
+<!-- Error Modal -->
+<div id="errorModal" class="modal">
+    <div class="modal-content">
+        <div class="error-animation">
+            <i class="fas fa-times-circle"></i>
+        </div>
+        <h2>Error</h2>
+        <p id="errorMessage"></p>
+        <button onclick="closeErrorModal()" class="close-btn">Close</button>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="{{ url_for('static', filename='js/booking.js') }}"></script>
+{% endblock %} 

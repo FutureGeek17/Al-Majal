@@ -1,0 +1,155 @@
+{% extends "base.html" %}
+
+{% block title %}About the Camp - Al Majal Business Park{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/pages.css') }}">
+{% endblock %}
+
+{% block content %}
+<main class="main-content">
+    <!-- Hero Section -->
+    <section class="about-hero">
+        <div class="about-hero-grid">
+            <div class="about-hero-content">
+                <div class="about-hero-text">
+                    <h1>Welcome to<br><span class="highlight">Al Majal Business Park</span></h1>
+                    <p class="hero-subtitle">Your Premier Business Destination in Saudi Arabia</p>
+                    <div class="hero-features">
+                        <div class="feature-tag">
+                            <i class="fas fa-check-circle"></i>
+                            <span>World-Class Facilities</span>
+                        </div>
+                        <div class="feature-tag">
+                            <i class="fas fa-star"></i>
+                            <span>Premium Services</span>
+                        </div>
+                        <div class="feature-tag">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>24/7 Security</span>
+                        </div>
+                    </div>
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <span class="stat-number">10+</span>
+                            <span class="stat-label">Premium Facilities</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">24/7</span>
+                            <span class="stat-label">Support & Security</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">100%</span>
+                            <span class="stat-label">Client Satisfaction</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="about-hero-image">
+                <div class="image-overlay"></div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <a href="#welcome">
+                <span>Learn More</span>
+                <i class="fas fa-chevron-down"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- Welcome Section -->
+    <section id="welcome" class="welcome-section">
+        <div class="container">
+            <div class="welcome-content">
+                <h2><i class="fas fa-star"></i> Welcome to Al Majal Business Camp</h2>
+                <p class="lead-text">Discover Al Majal Business Camp – a unique destination where work, wellness, and recreation come together in harmony. Nestled in a vibrant, modern environment, our camp is designed to offer an enriching experience for residents and visitors alike.</p>
+                <p>Whether you're here for business, leisure, or team-building, Al Majal Business Camp offers a diverse range of premium facilities and amenities. From state-of-the-art sports courts to relaxing dining spaces, every detail is crafted to support your comfort, engagement, and growth.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Premium Facilities Section -->
+    <section id="premium-facilities" class="features-section">
+        <div class="container">
+            <h2><i class="fas fa-trophy"></i> Our Premium Facilities</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <i class="fas fa-table-tennis"></i>
+                    <h3>Padel Tennis</h3>
+                    <p>Two professional-grade courts for an exciting game experience</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-basketball-ball"></i>
+                    <h3>Basketball/Volleyball</h3>
+                    <p>Multipurpose court for team sports and friendly matches</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-futbol"></i>
+                    <h3>Football</h3>
+                    <p>Spacious outdoor pitch for the beautiful game</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-table-tennis-paddle-ball"></i>
+                    <h3>Table Tennis</h3>
+                    <p>Indoor facilities for casual and competitive play</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-golf-ball"></i>
+                    <h3>Mini Golf</h3>
+                    <p>Three fun and challenging courses</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-users"></i>
+                    <h3>Team Activities</h3>
+                    <p>Seasonal events designed for connection and fun</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Additional Amenities -->
+    <section class="amenities-section">
+        <div class="container">
+            <h2><i class="fas fa-concierge-bell"></i> Additional Amenities</h2>
+            <div class="amenities-grid">
+                <div class="amenity-card">
+                    <i class="fas fa-utensils"></i>
+                    <h3>Dining Facilities</h3>
+                    <p>Modern dining spaces for relaxation and socializing</p>
+                </div>
+                <div class="amenity-card">
+                    <i class="fas fa-dumbbell"></i>
+                    <h3>Fitness Center</h3>
+                    <p>State-of-the-art equipment for your wellness journey</p>
+                </div>
+                <div class="amenity-card">
+                    <i class="fas fa-wifi"></i>
+                    <h3>High-Speed WiFi</h3>
+                    <p>Stay connected throughout the campus</p>
+                </div>
+                <div class="amenity-card">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>24/7 Security</h3>
+                    <p>Your safety is our priority</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Community Section -->
+    <section class="community-section">
+        <div class="container">
+            <div class="community-content">
+                <h2><i class="fas fa-heart"></i> More Than Just a Place to Stay</h2>
+                <p class="highlight-text">Al Majal Business Camp is a vibrant hub for community, recreation, and inspiration. Join us in creating memorable experiences and meaningful connections.</p>
+                <div class="cta-buttons">
+                    <a href="{{ url_for('activities') }}" class="cta-btn primary">View Activities</a>
+                    <a href="{{ url_for('community_events') }}" class="cta-btn secondary">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+{% endblock %} 

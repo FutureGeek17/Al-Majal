@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block title %}Admin Dashboard - Al Majal Camp Activities{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Admin Dashboard</h2>
+    
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">All Bookings</h3>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>User</th>
+                            <th>Contact</th>
+                            <th>Activity</th>
+                            <th>Date</th>
+                            <th>Time</th>
+                            <th>Status</th>
+                            <th>Participants</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for booking in bookings %}
+                        <tr class="{{ 'table-success' if booking.booking_status == 'upcoming' else 'table-secondary' }}">
+                            <td>{{ booking.user_name }}</td>
+                            <td>{{ booking.user_phone }}</td>
+                            <td>{{ booking.activity_id|replace('-', ' ')|title }}</td>
+                            <td>{{ booking.formatted_date }}</td>
+                            <td>{{ booking.formatted_time }}</td>
+                            <td>
+                                <span class="badge {{ 'bg-success' if booking.booking_status == 'upcoming' else 'bg-secondary' }}">
+                                    {{ booking.booking_status|title }}
+                                </span>
+                            </td>
+                            <td>{{ booking.participants }}</td>
+                            <td>
+                                {% if booking.booking_status == 'upcoming' %}
+                                    <form action="{{ url_for('cancel_booking', booking_id=booking.id) }}" method="POST" style="display: inline;">
+                                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                                        <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to cancel this booking?')">
+                                            Cancel
+                                        </button>
+                                    </form>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

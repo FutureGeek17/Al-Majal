@@ -1,0 +1,194 @@
+{% extends "base.html" %}
+
+{% block title %}Activities - Al Majal Camp{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/activities.css') }}">
+{% endblock %}
+
+{% block content %}
+<section class="page-header">
+    <div class="header-content">
+        <h1><i class="fas fa-medal"></i> Activities & Facilities</h1>
+        <p class="subtitle">Stay Active, Connected, and Entertained</p>
+    </div>
+</section>
+
+<div class="activities-container">
+    <section class="activity-category">
+        <div class="category-header">
+            <h2><i class="fas fa-basketball-ball"></i> Court Sports</h2>
+            <p>Professional courts for various sports activities</p>
+        </div>
+        
+        <div class="activities-grid">
+            <div class="activity-card">
+                <div class="activity-image">
+                    <img src="{{ url_for('static', filename='images/activities/padel-courts.jpg') }}" alt="Modern padel courts with glass walls and artificial turf">
+                </div>
+                <div class="activity-content">
+                    <div class="activity-header">
+                        <h2>Padel Courts</h2>
+                        <span class="player-count"><i class="fas fa-users"></i> 2-4 Players</span>
+                    </div>
+                    <p class="activity-subtitle">Court 1 & Court 2</p>
+                    <p>Two state-of-the-art padel courts designed for both beginners and advanced players. Enjoy fast-paced games in a modern and well-lit environment.</p>
+                    <div class="activity-details">
+                        <span><i class="fas fa-clock"></i> 60 min sessions</span>
+                        <span><i class="fas fa-star"></i> Professional grade</span>
+                    </div>
+                    <div class="book-btn-container">
+                        <a href="{{ url_for('booking', activity_id=1) if current_user.is_authenticated else url_for('login', next=url_for('booking', activity_id=1)) }}" class="book-btn">
+                            {% if current_user.is_authenticated %}
+                                Book a Court <i class="fas fa-arrow-right"></i>
+                            {% else %}
+                                Login to Book <i class="fas fa-sign-in-alt"></i>
+                            {% endif %}
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="activity-card">
+                <div class="activity-image">
+                    <img src="{{ url_for('static', filename='images/activities/basketball-court.jpg') }}" alt="Professional basketball court with volleyball net setup">
+                </div>
+                <div class="activity-content">
+                    <div class="activity-header">
+                        <h2>Basketball/Volleyball Court</h2>
+                        <span class="player-count"><i class="fas fa-users"></i> 2-10 Players</span>
+                    </div>
+                    <p class="activity-subtitle">Multi-purpose Court</p>
+                    <p>A versatile shared court space offering the best of both sports. Great for casual games, team bonding, and evening competitions.</p>
+                    <div class="activity-details">
+                        <span><i class="fas fa-clock"></i> 60 min sessions</span>
+                        <span><i class="fas fa-exchange-alt"></i> Multi-sport</span>
+                    </div>
+                    <div class="book-btn-container">
+                        <a href="{{ url_for('booking', activity_id=2) if current_user.is_authenticated else url_for('login', next=url_for('booking', activity_id=2)) }}" class="book-btn">
+                            {% if current_user.is_authenticated %}
+                                Book the Court <i class="fas fa-arrow-right"></i>
+                            {% else %}
+                                Login to Book <i class="fas fa-sign-in-alt"></i>
+                            {% endif %}
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="activity-card">
+                <div class="activity-image">
+                    <img src="{{ url_for('static', filename='images/activities/football.jpg') }}" alt="Football field">
+                </div>
+                <div class="activity-content">
+                    <div class="activity-header">
+                        <h2>Football Field</h2>
+                        <span class="player-count"><i class="fas fa-users"></i> 6-14 Players</span>
+                    </div>
+                    <p class="activity-subtitle">5-a-side Field</p>
+                    <p>A modern football field perfect for small-sided games. Features high-quality artificial turf and proper lighting for evening matches.</p>
+                    <div class="activity-details">
+                        <span><i class="fas fa-clock"></i> 60 min sessions</span>
+                        <span><i class="fas fa-futbol"></i> Professional turf</span>
+                    </div>
+                    <div class="book-btn-container">
+                        <a href="{{ url_for('booking', activity_id=5) if current_user.is_authenticated else url_for('login', next=url_for('booking', activity_id=5)) }}" class="book-btn">
+                            {% if current_user.is_authenticated %}
+                                Book the Field <i class="fas fa-arrow-right"></i>
+                            {% else %}
+                                Login to Book <i class="fas fa-sign-in-alt"></i>
+                            {% endif %}
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="activity-category">
+        <div class="category-header">
+            <h2><i class="fas fa-table-tennis"></i> Indoor Activities</h2>
+            <p>Climate-controlled indoor facilities for year-round enjoyment</p>
+        </div>
+        
+        <div class="activities-grid">
+            <div class="activity-card">
+                <div class="activity-image">
+                    <img src="{{ url_for('static', filename='images/activities/indoor-table-tennis.jpg') }}" alt="Professional indoor table tennis setup">
+                </div>
+                <div class="activity-content">
+                    <div class="activity-header">
+                        <h2>Table Tennis</h2>
+                        <span class="player-count"><i class="fas fa-users"></i> 2-4 Players</span>
+                    </div>
+                    <p class="activity-subtitle">Indoor Recreation Area</p>
+                    <p>A single pro-quality table tennis setup ideal for friendly matches and tournaments.</p>
+                    <div class="activity-details">
+                        <span><i class="fas fa-clock"></i> 30 min sessions</span>
+                        <span><i class="fas fa-shield-alt"></i> Professional equipment</span>
+                    </div>
+                    <div class="book-btn-container">
+                        <a href="{{ url_for('booking', activity_id=3) if current_user.is_authenticated else url_for('login', next=url_for('booking', activity_id=3)) }}" class="book-btn">
+                            {% if current_user.is_authenticated %}
+                                Reserve a Time <i class="fas fa-arrow-right"></i>
+                            {% else %}
+                                Login to Book <i class="fas fa-sign-in-alt"></i>
+                            {% endif %}
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="activity-card">
+                <div class="activity-image">
+                    <img src="{{ url_for('static', filename='images/activities/mini-golf.jpg') }}" alt="Mini Golf Course">
+                </div>
+                <div class="activity-content">
+                    <div class="activity-header">
+                        <h2>Mini Golf</h2>
+                        <span class="player-count"><i class="fas fa-users"></i> 1-4 Players</span>
+                    </div>
+                    <p class="activity-subtitle">3 Creative Courses</p>
+                    <p>Enjoy 3 creative mini golf courses with fun obstacles, perfect for relaxation and friendly competition.</p>
+                    <div class="activity-details">
+                        <span><i class="fas fa-clock"></i> 45 min sessions</span>
+                        <span><i class="fas fa-golf-ball"></i> Family friendly</span>
+                    </div>
+                    <div class="book-btn-container">
+                        <a href="{{ url_for('booking', activity_id=4) if current_user.is_authenticated else url_for('login', next=url_for('booking', activity_id=4)) }}" class="book-btn">
+                            {% if current_user.is_authenticated %}
+                                Book a Round <i class="fas fa-arrow-right"></i>
+                            {% else %}
+                                Login to Book <i class="fas fa-sign-in-alt"></i>
+                            {% endif %}
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const sections = document.querySelectorAll('.activity-category');
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.2
+    });
+    
+    sections.forEach(section => {
+        observer.observe(section);
+    });
+});
+</script>
+{% endblock %} 

@@ -1,0 +1,210 @@
+{% extends "base.html" %}
+
+{% block title %}Community Events - Al Majal Business Camp{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/events.css') }}">
+{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="page-header events-header">
+    <div class="header-content">
+        <h1><i class="fas fa-calendar-star"></i> Community Events</h1>
+        <p class="subtitle">Building Connections, Creating Memories</p>
+    </div>
+</section>
+
+<!-- Introduction Section -->
+<section class="intro-section">
+    <div class="container">
+        <div class="intro-content">
+            <h2><i class="fas fa-sparkles"></i> Welcome to Our Community Hub</h2>
+            <p class="lead-text">At Al Majal Business Camp, we believe that a strong, connected community is at the heart of every great experience. Our events are designed to bring people together, promote well-being, and create lasting memories — whether through sports, entertainment, wellness, or cultural celebrations.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Events Grid Section -->
+<section class="events-grid-section">
+    <div class="container">
+        <h2 class="text-center"><i class="fas fa-calendar-week"></i> Our Regular Events</h2>
+        <div class="events-grid">
+            <div class="event-card sports">
+                <i class="fas fa-trophy"></i>
+                <h3>Sports Tournaments</h3>
+                <ul>
+                    <li>Padel Championships</li>
+                    <li>Basketball Leagues</li>
+                    <li>Table Tennis Matches</li>
+                    <li>Mini Golf Challenges</li>
+                </ul>
+            </div>
+            <div class="event-card cultural">
+                <i class="fas fa-theater-masks"></i>
+                <h3>Cultural Events</h3>
+                <ul>
+                    <li>Seasonal Festivals</li>
+                    <li>Cultural Celebrations</li>
+                    <li>Talent Shows</li>
+                    <li>Art Exhibitions</li>
+                </ul>
+            </div>
+            <div class="event-card entertainment">
+                <i class="fas fa-film"></i>
+                <h3>Entertainment</h3>
+                <ul>
+                    <li>Outdoor Movie Nights</li>
+                    <li>Game Tournaments</li>
+                    <li>Live Performances</li>
+                    <li>Social Gatherings</li>
+                </ul>
+            </div>
+            <div class="event-card wellness">
+                <i class="fas fa-heart-pulse"></i>
+                <h3>Wellness Activities</h3>
+                <ul>
+                    <li>Fitness Workshops</li>
+                    <li>Yoga Sessions</li>
+                    <li>Meditation Classes</li>
+                    <li>Health Seminars</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Upcoming Events Section -->
+<section class="upcoming-events">
+    <div class="container">
+        <h2><i class="fas fa-calendar-alt"></i> Upcoming Events</h2>
+        <div class="events-timeline">
+            <div class="timeline-event">
+                <div class="event-date">
+                    <span class="month">JUN</span>
+                    <span class="day">15</span>
+                </div>
+                <div class="event-content">
+                    <h3>Summer Padel Tournament</h3>
+                    <p>Join us for our biggest padel tournament of the year! Great prizes and refreshments provided.</p>
+                    <div class="event-meta">
+                        <span><i class="fas fa-clock"></i> 4:00 PM</span>
+                        <span><i class="fas fa-map-marker-alt"></i> Padel Courts</span>
+                        <span><i class="fas fa-users"></i> 32 Spots</span>
+                    </div>
+                    <a href="#" class="register-btn">Register Now</a>
+                </div>
+            </div>
+            <div class="timeline-event">
+                <div class="event-date">
+                    <span class="month">JUN</span>
+                    <span class="day">20</span>
+                </div>
+                <div class="event-content">
+                    <h3>Outdoor Movie Night</h3>
+                    <p>A magical evening under the stars with a special screening and complimentary snacks.</p>
+                    <div class="event-meta">
+                        <span><i class="fas fa-clock"></i> 7:30 PM</span>
+                        <span><i class="fas fa-map-marker-alt"></i> Central Garden</span>
+                        <span><i class="fas fa-users"></i> Open Event</span>
+                    </div>
+                    <a href="#" class="register-btn">RSVP</a>
+                </div>
+            </div>
+            <div class="timeline-event">
+                <div class="event-date">
+                    <span class="month">JUN</span>
+                    <span class="day">25</span>
+                </div>
+                <div class="event-content">
+                    <h3>Community Game Night</h3>
+                    <p>An evening of fun board games, card games, and interactive entertainment!</p>
+                    <div class="event-meta">
+                        <span><i class="fas fa-clock"></i> 6:00 PM</span>
+                        <span><i class="fas fa-map-marker-alt"></i> Community Hall</span>
+                        <span><i class="fas fa-users"></i> 50 Spots</span>
+                    </div>
+                    <a href="#" class="register-btn">Join In</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Location Notice -->
+<section class="location-notice">
+    <div class="container">
+        <div class="notice-content">
+            <h2><i class="fas fa-map-marked-alt"></i> Event Locations</h2>
+            <div class="location-cards">
+                <div class="location-card active">
+                    <h3>North Rumaila Camp</h3>
+                    <p class="status available">Bookings Available</p>
+                    <p>All facilities and events are fully operational.</p>
+                    <a href="#" class="location-btn">Book Now</a>
+                </div>
+                <div class="location-card coming-soon">
+                    <h3>Burjesia Camp</h3>
+                    <p class="status pending">Coming Soon</p>
+                    <p>We're working hard to bring you the same great experience.</p>
+                    <a href="#" class="location-btn disabled">Stay Tuned</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Get Involved Section -->
+<section class="get-involved">
+    <div class="container">
+        <h2><i class="fas fa-hands-helping"></i> Want to Get Involved?</h2>
+        <p class="lead-text">Have ideas for events or want to volunteer? We'd love to hear from you!</p>
+        <div class="involvement-options">
+            <div class="option-card">
+                <i class="fas fa-lightbulb"></i>
+                <h3>Share Your Ideas</h3>
+                <p>Got an event idea? Let us know!</p>
+                <button class="involvement-btn" onclick="showIdeaForm()">Submit Idea</button>
+            </div>
+            <div class="option-card">
+                <i class="fas fa-hand-holding-heart"></i>
+                <h3>Volunteer</h3>
+                <p>Join our community organizer team!</p>
+                <button class="involvement-btn" onclick="showVolunteerForm()">Join Us</button>
+            </div>
+            <div class="option-card">
+                <i class="fas fa-comments"></i>
+                <h3>Give Feedback</h3>
+                <p>Help us improve our events!</p>
+                <button class="involvement-btn" onclick="showFeedbackForm()">Share Feedback</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Form -->
+<section class="contact-section">
+    <div class="container">
+        <div class="contact-form">
+            <h2><i class="fas fa-envelope"></i> Contact Us</h2>
+            <form id="eventContactForm">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" rows="4" required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Send Message</button>
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock %} 

@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+
+{% block title %}My Bookings - Al Majal Camp{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/auth_nav.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/my_bookings.css') }}">
+{% endblock %}
+
+{% block navigation %}
+{% include 'includes/auth_nav.html' %}
+{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <h1 class="mb-4">My Bookings</h1>
+
+    {% if bookings %}
+        <div class="row">
+            {% for booking in bookings %}
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="card h-100 {% if booking.booking_status == 'upcoming' %}border-primary{% else %}border-secondary{% endif %}">
+                        <div class="card-header {% if booking.booking_status == 'upcoming' %}bg-primary text-white{% else %}bg-secondary text-white{% endif %}">
+                            {{ booking.booking_status|title }} Booking
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">{{ booking.activity_id|replace('-', ' ')|title }}</h5>
+                            <p class="card-text">
+                                <strong>Date:</strong> {{ booking.formatted_date }}<br>
+                                <strong>Time:</strong> {{ booking.formatted_time }}<br>
+                                <strong>Duration:</strong> {{ booking.duration }} minutes<br>
+                                <strong>Participants:</strong> {{ booking.participants }}
+                            </p>
+                            {% if booking.notes %}
+                                <p class="card-text"><small class="text-muted">Notes: {{ booking.notes }}</small></p>
+                            {% endif %}
+                            <p class="card-text">
+                                <small class="text-muted">Booked on: {{ booking.created_at }}</small>
+                            </p>
+                        </div>
+                        {% if booking.booking_status == 'upcoming' %}
+                            <div class="card-footer">
+                                <form action="{{ url_for('cancel_booking', booking_id=booking.id) }}" method="POST" style="display: inline;">
+                                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to cancel this booking?')">
+                                        Cancel Booking
+                                    </button>
+                                </form>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="alert alert-info">
+            <p>You don't have any bookings yet.</p>
+            <a href="{{ url_for('booking') }}" class="btn btn-primary mt-3">Book an Activity</a>
+        </div>
+    {% endif %}
+</div>
+
+<!-- Add JavaScript for handling booking cancellation -->
+<script>
+function cancelBooking(bookingId) {
+    if (confirm('Are you sure you want to cancel this booking?')) {
+        fetch(`/booking/${bookingId}/cancel`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                // Add CSRF token if needed
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                // Reload the page to show updated bookings
+                location.reload();
+            } else {
+                alert('Failed to cancel booking: ' + data.message);
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('An error occurred while canceling the booking');
+        });
+    }
+}
+</script>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/my_bookings.js') }}"></script>
+{% endblock %} 

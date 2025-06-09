@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Activity - Al Majal Camp Activity Booking</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Add Flatpickr for better date picking -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="text-center">Book Activity</h3>
+                    </div>
+                    <div class="card-body">
+                        {% if error %}
+                        <div class="alert alert-danger">{{ error }}</div>
+                        {% endif %}
+                        {% if success %}
+                        <div class="alert alert-success">{{ success }}</div>
+                        {% endif %}
+                        <form method="POST" action="{{ url_for('booking') }}">
+                            <div class="mb-3">
+                                <label for="facility" class="form-label">Select Facility</label>
+                                <select class="form-select" id="facility" name="facility" required>
+                                    <option value="">Choose a facility...</option>
+                                    <option value="football">Football Field</option>
+                                    <option value="basketball">Basketball Court</option>
+                                    <option value="volleyball">Volleyball Court</option>
+                                    <option value="tennis">Tennis Court</option>
+                                    <option value="gym">Gymnasium</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="date" class="form-label">Select Date</label>
+                                <input type="date" class="form-control" id="date" name="date" required min="{{ today }}">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Select Time Slot</label>
+                                <div class="time-slots">
+                                    {% for slot in time_slots %}
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input" type="radio" name="time_slot" 
+                                               id="slot_{{ slot['value'] }}" value="{{ slot['value'] }}"
+                                               {% if slot['booked'] %}disabled{% endif %} required>
+                                        <label class="form-check-label {% if slot['booked'] %}text-muted{% endif %}" 
+                                               for="slot_{{ slot['value'] }}">
+                                            {{ slot['label'] }}
+                                            {% if slot['booked'] %}<span class="badge bg-danger">Booked</span>{% endif %}
+                                        </label>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            <div class="d-grid gap-2">
+                                <button type="submit" class="btn btn-primary">Book Now</button>
+                                <a href="{{ url_for('home') }}" class="btn btn-secondary">Back to Home</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        // Initialize Flatpickr date picker
+        flatpickr("#date", {
+            minDate: "today",
+            dateFormat: "Y-m-d",
+        });
+    </script>
+</body>
+</html> 

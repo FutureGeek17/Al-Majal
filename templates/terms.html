@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+
+{% block title %}Terms & Conditions - Al Majal Camp{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/legal.css') }}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+{% endblock %}
+
+{% block content %}
+<div class="hero-banner">
+    <div class="hero-overlay"></div>
+    <div class="hero-image">
+        <img src="{{ url_for('static', filename='images/amina-atar-Mqc-m8kgxkg-unsplash.jpg') }}" alt="Legal Document">
+    </div>
+    <div class="hero-content">
+        <h1>Terms & Conditions</h1>
+        <div class="icon-container">
+            <i class="fas fa-file-contract"></i>
+        </div>
+    </div>
+    <a href="#terms-content" class="scroll-arrow">
+        <i class="fas fa-arrow-down"></i>
+        <span>View Terms</span>
+    </a>
+</div>
+
+<div id="terms-content" class="legal-content">
+    <div class="intro-text">
+        <p>The following sets out the conditions of use of Al Majal's website. Unless specified otherwise, references in this site to "Al Majal" shall mean Al Majal for Oil and Energy Company and its subsidiaries and affiliates.</p>
+    </div>
+
+    <div class="terms-grid">
+        <div class="terms-section">
+            <h2>1. Acceptance of Terms</h2>
+            <p>By accessing and using Al Majal Business Park facilities and services, you agree to be bound by these Terms & Conditions. If you do not agree to these terms, please do not use our facilities or services.</p>
+        </div>
+
+        <div class="terms-section">
+            <h2>2. Residency Requirements</h2>
+            <p>Access to facility booking and recreational services is strictly limited to residents of North Rumaila Al Majal Business Park. Non-residents and daily commuters are not permitted to make bookings or use the recreational facilities. Proof of residency may be required at the time of booking or facility use.</p>
+        </div>
+
+        <div class="terms-section">
+            <h2>3. Use of Facilities</h2>
+            <p>Access to and use of Al Majal Business Park facilities is subject to applicable rules, guidelines, and regulations. Users must comply with all posted signs, staff instructions, and safety requirements.</p>
+        </div>
+
+        <div class="terms-section">
+            <h2>4. Booking and Reservations</h2>
+            <p>All facility bookings and reservations:</p>
+            <ul class="terms-list">
+                <li>Are restricted to verified residents of North Rumaila Al Majal Business Park only</li>
+                <li>Must be made through authorized channels</li>
+                <li>Are subject to availability</li>
+                <li>May require proof of residency during booking process</li>
+                <li>Are subject to cancellation policies and fees</li>
+            </ul>
+            <p>The management reserves the right to deny bookings from non-residents or daily commuters.</p>
+        </div>
+
+        <div class="terms-section">
+            <h2>5. Safety and Security</h2>
+            <p>Users must follow all safety protocols and security measures. Al Majal Business Park reserves the right to deny access to anyone who violates safety regulations or poses a risk to others.</p>
+        </div>
+
+        <div class="terms-section">
+            <h2>6. Liability</h2>
+            <p>Al Majal Business Park is not liable for any personal injury, loss, or damage to property while using our facilities. Users participate in activities at their own risk.</p>
+        </div>
+
+        <div class="terms-section">
+            <h2>7. Modifications</h2>
+            <p>We reserve the right to modify these terms at any time. Continued use of our facilities after changes constitutes acceptance of the modified terms.</p>
+        </div>
+    </div>
+
+    <div class="disclaimer-section">
+        <p>The information contained in this website is not comprehensive. Despite our efforts, it may not be accurate, up to date or applicable to the circumstances of any particular case.</p>
+    </div>
+</div>
+{% endblock %} 

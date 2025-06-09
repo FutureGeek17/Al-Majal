@@ -1,0 +1,94 @@
+<!-- Modern Footer -->
+<footer class="footer">
+    <div class="footer-content">
+        <!-- Main Content Section -->
+        <div class="footer-main">
+            <!-- Brand Section -->
+            <div class="footer-brand">
+                <img src="{{ url_for('static', filename='images/almajal-logo.png') }}" alt="Al Majal Logo" class="footer-logo">
+                <p class="brand-description">Your premier destination for sports and recreation at North Rumaila Al Majal Business Park.</p>
+                <div class="social-links">
+                    <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+
+            <!-- Quick Links Section -->
+            <div class="footer-links-section">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="{{ url_for('home') }}"><i class="fas fa-chevron-right"></i> Home</a></li>
+                    <li><a href="{{ url_for('activities') }}"><i class="fas fa-chevron-right"></i> Activities</a></li>
+                    <li><a href="{{ url_for('booking') }}"><i class="fas fa-chevron-right"></i> Book Now</a></li>
+                    <li><a href="{{ url_for('about_camp') }}"><i class="fas fa-chevron-right"></i> About Us</a></li>
+                </ul>
+            </div>
+
+            <!-- Contact Section -->
+            <div class="footer-contact">
+                <h3>Contact Us</h3>
+                <ul class="contact-info">
+                    <li>
+                        <i class="fas fa-envelope"></i>
+                        <div class="contact-detail">
+                            <span class="label">Email:</span>
+                            <a href="mailto:frontdesknr@almajalbusinesspark.com">frontdesknr@almajalbusinesspark.com</a>
+                        </div>
+                    </li>
+                    <li>
+                        <i class="fas fa-phone"></i>
+                        <div class="contact-detail">
+                            <span class="label">Phone:</span>
+                            <a href="tel:+97107811199377">+971 078 1119 9377</a>
+                        </div>
+                    </li>
+                    <li>
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div class="contact-detail">
+                            <span class="label">Address:</span>
+                            <span>North Rumaila Business Park</span>
+                        </div>
+                    </li>
+                    <li>
+                        <i class="fas fa-clock"></i>
+                        <div class="contact-detail">
+                            <span class="label">Hours:</span>
+                            <span>Open 5:00 PM - 10:00 PM</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Map Section -->
+        <div class="footer-map">
+            <h3>Location</h3>
+            <div class="map-container">
+                <iframe 
+                    width="100%" 
+                    height="100%" 
+                    frameborder="0" 
+                    style="border:0" 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3409.675186052491!2d47.24853997096151!3d30.563499956106902!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzDCsDMzJzQ4LjYiTiA0N8KwMTQnNTQuNyJF!5e0!3m2!1sen!2s!4v1624451234567!5m2!1sen!2s" 
+                    allowfullscreen>
+                </iframe>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Bottom -->
+    <div class="footer-bottom">
+        <div class="footer-bottom-content">
+            <div class="copyright">
+                <p>&copy; {{ now.year }} Al Majal. All rights reserved.</p>
+            </div>
+            <div class="footer-legal">
+                <a href="{{ url_for('terms') }}">Terms & Conditions</a>
+                <span class="separator">•</span>
+                <a href="{{ url_for('privacy') }}">Privacy Policy</a>
+            </div>
+        </div>
+    </div>
+</footer> 

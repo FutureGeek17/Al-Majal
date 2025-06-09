@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+
+{% block title %}Admin Dashboard - Al Majal Camp Activity Booking{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <h2 class="mb-4">Admin Dashboard</h2>
+        
+        <!-- Users Section -->
+        <div class="card mb-4 shadow">
+            <div class="card-header bg-primary text-white">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h3 class="card-title mb-0">Registered Users</h3>
+                    <a href="{{ url_for('export_users') }}" class="btn btn-light">
+                        <i class="bi bi-download"></i> Export Users
+                    </a>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>ID Number</th>
+                                <th>Phone</th>
+                                <th>Total Bookings</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for user in users %}
+                            <tr>
+                                <td>{{ user.id }}</td>
+                                <td>{{ user.name }}</td>
+                                <td>{{ user.id_number }}</td>
+                                <td>{{ user.phone }}</td>
+                                <td>{{ user.total_bookings }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Weekly Bookings Section -->
+        <div class="card shadow">
+            <div class="card-header bg-primary text-white">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h3 class="card-title mb-0">Weekly Bookings</h3>
+                    <div class="d-flex gap-2">
+                        <form class="d-flex" method="GET" action="{{ url_for('admin_dashboard') }}">
+                            <input type="date" class="form-control me-2" name="week_start" value="{{ week_start }}" onchange="this.form.submit()">
+                        </form>
+                        <a href="{{ url_for('export_bookings', week_start=week_start) }}" class="btn btn-light">
+                            <i class="bi bi-download"></i> Export Bookings
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                {% for facility in bookings %}
+                <h4 class="mt-3">{{ facility.name }}</h4>
+                <div class="table-responsive mb-4">
+                    <table class="table table-bordered">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Time Slot</th>
+                                {% for date in facility.dates %}
+                                <th>{{ date.strftime('%a, %d %b') }}</th>
+                                {% endfor %}
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for time_slot in facility.time_slots %}
+                            <tr>
+                                <td class="table-light">{{ time_slot.label }}</td>
+                                {% for date in facility.dates %}
+                                <td>
+                                    {% if facility.bookings[date.strftime('%Y-%m-%d')][time_slot.value] %}
+                                    {% set booking = facility.bookings[date.strftime('%Y-%m-%d')][time_slot.value] %}
+                                    <div class="text-primary">
+                                        {{ booking.user_name }}<br>
+                                        <small class="text-muted">{{ booking.phone }}</small>
+                                    </div>
+                                    {% endif %}
+                                </td>
+                                {% endfor %}
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

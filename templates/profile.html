@@ -1,0 +1,129 @@
+{% extends "base.html" %}
+
+{% block title %}Profile - Al Majal Camp{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/profile.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="profile-container">
+    <div class="profile-header">
+        <h1>Welcome, {{ current_user.name }}</h1>
+        <p>Manage your Al Majal Camp profile</p>
+    </div>
+
+    <div class="profile-content">
+        <div class="profile-card">
+            <div class="profile-section">
+                <h2><i class="fas fa-user-circle"></i> Personal Information</h2>
+                <div class="info-group">
+                    <label>Name:</label>
+                    <span>{{ current_user.name }}</span>
+                </div>
+                <div class="info-group">
+                    <label>Phone:</label>
+                    <span>{{ current_user.phone }}</span>
+                </div>
+                <div class="info-group">
+                    <label>Member Since:</label>
+                    <span>{{ current_user.created_at.strftime('%B %Y') if current_user.created_at else 'N/A' }}</span>
+                </div>
+            </div>
+
+            <div class="profile-section">
+                <h2><i class="fas fa-calendar-check"></i> Recent Bookings</h2>
+                {% if bookings %}
+                    <div class="bookings-list">
+                        {% for booking in bookings %}
+                            <div class="booking-item {{ booking.booking_status }}">
+                                <div class="booking-icon">
+                                    {% if booking.activity_name == 'Table Tennis' %}
+                                        <i class="fas fa-table-tennis"></i>
+                                    {% elif booking.activity_name == 'Basketball Court' %}
+                                        <i class="fas fa-basketball-ball"></i>
+                                    {% elif booking.activity_name == 'Volleyball Court' %}
+                                        <i class="fas fa-volleyball-ball"></i>
+                                    {% elif booking.activity_name == 'Mini Golf' %}
+                                        <i class="fas fa-golf-ball"></i>
+                                    {% else %}
+                                        <i class="fas fa-running"></i>
+                                    {% endif %}
+                                </div>
+                                <div class="booking-details">
+                                    <h3>{{ booking.activity_name }}</h3>
+                                    <p>
+                                        <i class="far fa-calendar"></i> {{ booking.formatted_date }}
+                                        <i class="far fa-clock ml-2"></i> {{ booking.formatted_time }}
+                                    </p>
+                                    <span class="booking-status {{ booking.booking_status }}">
+                                        {{ booking.booking_status|title }}
+                                    </span>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <div class="view-all-link">
+                        <a href="{{ url_for('view_bookings') }}" class="btn-view-all">
+                            View All Bookings <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                {% else %}
+                    <p class="no-bookings">No bookings yet. Ready to get active? 
+                        <a href="{{ url_for('booking') }}">Book an activity now!</a>
+                    </p>
+                {% endif %}
+            </div>
+
+            {% if favorite_activities %}
+                <div class="profile-section">
+                    <h2><i class="fas fa-star"></i> Your Favorite Activities</h2>
+                    <div class="favorites-list">
+                        {% for activity in favorite_activities %}
+                            <div class="favorite-item">
+                                <div class="favorite-icon">
+                                    {% if activity.name == 'Table Tennis' %}
+                                        <i class="fas fa-table-tennis"></i>
+                                    {% elif activity.name == 'Basketball Court' %}
+                                        <i class="fas fa-basketball-ball"></i>
+                                    {% elif activity.name == 'Volleyball Court' %}
+                                        <i class="fas fa-volleyball-ball"></i>
+                                    {% elif activity.name == 'Mini Golf' %}
+                                        <i class="fas fa-golf-ball"></i>
+                                    {% else %}
+                                        <i class="fas fa-running"></i>
+                                    {% endif %}
+                                </div>
+                                <div class="favorite-details">
+                                    <h3>{{ activity.name }}</h3>
+                                    <p>{{ activity.booking_count }} bookings</p>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endif %}
+
+            <div class="profile-section">
+                <h2><i class="fas fa-building"></i> Facility Access</h2>
+                <p>Visit the front desk during operating hours (5:00 PM - 10:00 PM) to access any of our facilities:</p>
+                <ul class="facilities-list">
+                    <li><i class="fas fa-table-tennis"></i> Table Tennis</li>
+                    <li><i class="fas fa-basketball-ball"></i> Basketball Court</li>
+                    <li><i class="fas fa-volleyball-ball"></i> Volleyball Court</li>
+                    <li><i class="fas fa-golf-ball"></i> Mini Golf</li>
+                </ul>
+            </div>
+
+            <div class="profile-section">
+                <h2><i class="fas fa-headset"></i> Need Help?</h2>
+                <p>Contact the front desk for assistance:</p>
+                <div class="contact-info">
+                    <p><i class="fas fa-phone"></i> +971 078 111 99377</p>
+                    <p><i class="fas fa-envelope"></i> frontdesknr@almajalbusinesspark.com</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

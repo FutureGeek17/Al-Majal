@@ -1,0 +1,285 @@
+{% extends "base.html" %}
+
+{% block title %}My Bookings - Al Majal Camp{% endblock %}
+
+{% block styles %}
+<style>
+    .bookings-container {
+        max-width: 1200px;
+        margin: 2rem auto;
+        padding: 0 1rem;
+    }
+
+    .bookings-header {
+        text-align: center;
+        margin-bottom: 3rem;
+    }
+
+    .bookings-header h1 {
+        font-size: 2.5rem;
+        color: #2c3e50;
+        margin-bottom: 1rem;
+    }
+
+    .bookings-header p {
+        color: #7f8c8d;
+        font-size: 1.2rem;
+    }
+
+    .date-section {
+        margin-bottom: 3rem;
+    }
+
+    .date-header {
+        background: #f8f9fa;
+        padding: 1rem;
+        border-radius: 8px;
+        margin-bottom: 1.5rem;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .date-header i {
+        font-size: 1.5rem;
+        color: #007bff;
+    }
+
+    .date-header h2 {
+        margin: 0;
+        font-size: 1.4rem;
+        color: #2c3e50;
+    }
+
+    .bookings-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 1.5rem;
+    }
+
+    .booking-card {
+        background: white;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+        border: 1px solid #e9ecef;
+    }
+
+    .booking-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .booking-header {
+        background: #007bff;
+        color: white;
+        padding: 1rem;
+        position: relative;
+    }
+
+    .booking-header h3 {
+        margin: 0;
+        font-size: 1.2rem;
+    }
+
+    .booking-time {
+        font-size: 0.9rem;
+        opacity: 0.9;
+        margin-top: 0.5rem;
+    }
+
+    .booking-content {
+        padding: 1.5rem;
+    }
+
+    .booking-info {
+        margin-bottom: 1.5rem;
+    }
+
+    .info-item {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-bottom: 0.8rem;
+        color: #6c757d;
+    }
+
+    .info-item i {
+        width: 20px;
+        color: #007bff;
+    }
+
+    .booking-actions {
+        display: flex;
+        gap: 1rem;
+    }
+
+    .cancel-btn {
+        width: 100%;
+        padding: 0.8rem;
+        border: none;
+        border-radius: 8px;
+        background: #dc3545;
+        color: white;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+    }
+
+    .cancel-btn:hover {
+        background: #c82333;
+        transform: translateY(-2px);
+    }
+
+    .no-bookings {
+        text-align: center;
+        padding: 3rem;
+        background: #f8f9fa;
+        border-radius: 12px;
+        color: #6c757d;
+    }
+
+    .no-bookings i {
+        font-size: 3rem;
+        color: #007bff;
+        margin-bottom: 1rem;
+    }
+
+    .no-bookings h3 {
+        margin: 1rem 0;
+        color: #2c3e50;
+    }
+
+    .book-now-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.8rem 1.5rem;
+        background: #28a745;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 1rem;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        margin-top: 1rem;
+    }
+
+    .book-now-btn:hover {
+        background: #218838;
+        transform: translateY(-2px);
+    }
+
+    @media (max-width: 768px) {
+        .bookings-container {
+            margin: 1rem auto;
+        }
+
+        .bookings-header h1 {
+            font-size: 2rem;
+        }
+
+        .bookings-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="bookings-container">
+    <div class="bookings-header">
+        <h1>My Bookings</h1>
+        <p>Manage your upcoming activities at Al Majal Camp</p>
+    </div>
+
+    {% if bookings %}
+        {% for date, date_bookings in bookings.items() %}
+        <div class="date-section">
+            <div class="date-header">
+                <i class="fas fa-calendar-day"></i>
+                <h2>{{ date }}</h2>
+            </div>
+            <div class="bookings-grid">
+                {% for booking in date_bookings %}
+                <div class="booking-card">
+                    <div class="booking-header">
+                        <h3>{{ booking.activity_name }}</h3>
+                        <div class="booking-time">{{ booking.time }}</div>
+                    </div>
+                    <div class="booking-content">
+                        <div class="booking-info">
+                            <div class="info-item">
+                                <i class="fas fa-users"></i>
+                                <span>{{ booking.participants }} participants</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-tag"></i>
+                                <span>{{ booking.activity_type|title }}</span>
+                            </div>
+                            {% if booking.notes %}
+                            <div class="info-item">
+                                <i class="fas fa-comment"></i>
+                                <span>{{ booking.notes }}</span>
+                            </div>
+                            {% endif %}
+                        </div>
+                        <div class="booking-actions">
+                            <button class="cancel-btn" onclick="cancelBooking({{ booking.id }})">
+                                <i class="fas fa-times"></i>
+                                Cancel Booking
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endfor %}
+    {% else %}
+        <div class="no-bookings">
+            <i class="fas fa-calendar-plus"></i>
+            <h3>No Upcoming Bookings</h3>
+            <p>You don't have any upcoming bookings. Why not book an activity?</p>
+            <a href="{{ url_for('booking') }}" class="book-now-btn">
+                <i class="fas fa-plus"></i>
+                Book an Activity
+            </a>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+function cancelBooking(bookingId) {
+    if (!confirm('Are you sure you want to cancel this booking?')) {
+        return;
+    }
+
+    fetch(`/booking/${bookingId}/cancel`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': '{{ csrf_token() }}'
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.error) {
+            alert(data.error);
+        } else {
+            location.reload();
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('Failed to cancel booking. Please try again.');
+    });
+}
+</script>
+{% endblock %} 

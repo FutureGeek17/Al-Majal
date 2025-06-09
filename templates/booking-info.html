@@ -1,0 +1,215 @@
+{% extends "base.html" %}
+
+{% block title %}Booking Information - Al Majal Camp{% endblock %}
+
+{% block content %}
+<div class="booking-info-container">
+    <div class="booking-info-header">
+        <h1>Important details about facility bookings</h1>
+    </div>
+
+    <div class="info-cards">
+        <div class="info-card">
+            <div class="card-icon">
+                <i class="fas fa-user-check"></i>
+            </div>
+            <div class="card-content">
+                <h2>Residents Only</h2>
+                <p>Bookings are exclusive to North Rumaila Al Majal Business Park residents</p>
+            </div>
+        </div>
+
+        <div class="info-card">
+            <div class="card-icon">
+                <i class="fas fa-clock"></i>
+            </div>
+            <div class="card-content">
+                <h2>Operating Hours</h2>
+                <p>Facilities available from 5:00 PM to 10:00 PM daily</p>
+            </div>
+        </div>
+
+        <div class="info-card">
+            <div class="card-icon">
+                <i class="fas fa-calendar-alt"></i>
+            </div>
+            <div class="card-content">
+                <h2>Advance Booking</h2>
+                <p>Book up to 7 days in advance, maximum 1 hour per session</p>
+            </div>
+        </div>
+
+        <div class="info-card">
+            <div class="card-icon">
+                <i class="fas fa-volleyball-ball"></i>
+            </div>
+            <div class="card-content">
+                <h2>Equipment</h2>
+                <p>Basic equipment available for rent at the front desk</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="activities-section">
+        <h2>Available Activities</h2>
+        <p>Book your favorite recreational activities at Al Majal Camp</p>
+        
+        <div class="activity-cards">
+            <div class="activity-card">
+                <div class="activity-badge">Most Popular</div>
+                <h3>Professional Padel Courts</h3>
+                <p>State-of-the-art courts with professional equipment for all skill levels</p>
+            </div>
+
+            <div class="activity-card">
+                <div class="activity-badge">Team Sport</div>
+                <h3>5-a-side Football Pitch</h3>
+                <p>Modern artificial turf pitch with floodlights for evening matches</p>
+            </div>
+
+            <div class="activity-card">
+                <div class="activity-badge">Indoor</div>
+                <h3>Table Tennis</h3>
+                <p>Professional table tennis setup in our climate-controlled facility</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+.booking-info-container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.booking-info-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.booking-info-header h1 {
+    font-size: 2.5rem;
+    color: var(--primary-blue);
+    margin-bottom: 1rem;
+}
+
+.info-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-bottom: 4rem;
+}
+
+.info-card {
+    background: white;
+    border-radius: 10px;
+    padding: 2rem;
+    box-shadow: 0 4px 15px rgba(0, 51, 102, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.info-card:hover {
+    transform: translateY(-5px);
+}
+
+.card-icon {
+    font-size: 2.5rem;
+    color: var(--primary-blue);
+    margin-bottom: 1.5rem;
+}
+
+.card-content h2 {
+    font-size: 1.5rem;
+    color: var(--primary-blue);
+    margin-bottom: 1rem;
+}
+
+.card-content p {
+    color: #666;
+    line-height: 1.6;
+}
+
+.activities-section {
+    text-align: center;
+    margin-top: 4rem;
+}
+
+.activities-section h2 {
+    font-size: 2rem;
+    color: var(--primary-blue);
+    margin-bottom: 1rem;
+}
+
+.activities-section > p {
+    color: #666;
+    margin-bottom: 3rem;
+}
+
+.activity-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.activity-card {
+    background: white;
+    border-radius: 10px;
+    padding: 2rem;
+    box-shadow: 0 4px 15px rgba(0, 51, 102, 0.1);
+    position: relative;
+    text-align: left;
+}
+
+.activity-badge {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: var(--accent-blue);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.activity-card h3 {
+    font-size: 1.3rem;
+    color: var(--primary-blue);
+    margin-bottom: 1rem;
+}
+
+.activity-card p {
+    color: #666;
+    line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+    .booking-info-header h1 {
+        font-size: 2rem;
+    }
+
+    .info-cards {
+        gap: 1.5rem;
+    }
+
+    .info-card {
+        padding: 1.5rem;
+    }
+
+    .card-icon {
+        font-size: 2rem;
+    }
+
+    .card-content h2 {
+        font-size: 1.3rem;
+    }
+}
+</style>
+{% endblock %} 
